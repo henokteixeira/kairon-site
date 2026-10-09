@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kairon · Engineering with people on the other side</title>
+<script>(function(){var l=(navigator.languages&&navigator.languages[0])||navigator.language||'';
+if(/^pt/i.test(l))location.replace('/pt/'+location.hash);})();</script>
+<meta name="description" content="Custom software, apps that work offline and processes that don't get lost. You talk to the person who writes the code. Founded by Henok Teixeira, São Paulo.">
+<link rel="canonical" href="https://kairon-tech.com/">
+<link rel="alternate" hreflang="en" href="https://kairon-tech.com/">
+<link rel="alternate" hreflang="pt-BR" href="https://kairon-tech.com/pt/">
+<link rel="alternate" hreflang="x-default" href="https://kairon-tech.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kairon-tech.com/">
+<meta property="og:title" content="Kairon · Engineering with people on the other side">
+<meta property="og:description" content="Custom software, apps that work offline and processes that don't get lost. You talk to the person who writes the code. Founded by Henok Teixeira, São Paulo.">
+<meta property="og:image" content="https://kairon-tech.com/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1E4F5A">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+/* Layout: uma coluna de 1120 px; cada seção é um capítulo do manual, título à esquerda e conteúdo à direita, separados por linha fina. */
+:root {
+  --bg: #FFFFFF; --fg: #14202A; --muted: #5A6570; --line: #E3E6E8;
+  --accent: #1E4F5A; --on-accent: #FFFFFF; --areia: #D9CDB6; --areia-bg: #EFE8DA; --logo: #1E4F5A; --soft: #F3F1EC; --trace: #C3CAD0; --acc-soft: #C9DADE;
+  --fd: "Bricolage Grotesque", "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --ft: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", Verdana, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #10181D; --fg: #EDEFF0; --muted: #A3ADB5; --line: #2A353D;
+  --accent: #8CC0CB; --on-accent: #10181D; --areia: #D9CDB6; --areia-bg: #1A242B; --logo: #EDEFF0; --soft: #182229; --trace: #3A4750; --acc-soft: #2C4A52; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #10181D; --fg: #EDEFF0; --muted: #A3ADB5; --line: #2A353D;
+  --accent: #8CC0CB; --on-accent: #10181D; --areia: #D9CDB6; --areia-bg: #1A242B; --logo: #EDEFF0; --soft: #182229; --trace: #3A4750; --acc-soft: #2C4A52; color-scheme: dark }
+
+html { scroll-behavior: smooth }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 var(--ft); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); }
+h1, h2, h3 { margin: 0; font-family: var(--fd); font-weight: 500; letter-spacing: -0.012em; text-wrap: balance; }
+p { margin: 0; max-width: 64ch; }
+p + p { margin-top: 14px }
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+svg { display: block; max-width: 100% }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 12px; background: var(--bg); padding: 8px 12px; z-index: 10; }
+
+/* topo */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.top.sombra { border-bottom-color: var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 68px; }
+.top .logo { color: var(--logo); display: block; width: 104px; }
+.top nav { display: flex; align-items: center; gap: clamp(14px, 3vw, 32px); font-size: 15px; }
+.top nav a { color: var(--fg); text-decoration: none; }
+.top nav a:hover { color: var(--accent); }
+.top nav .lang { font-weight: 700; font-size: 13px; letter-spacing: .08em; border: 1px solid var(--line); padding: 3px 9px; border-radius: 3px; }
+@media (max-width: 560px) { .top nav .sec { display: none } }
+
+/* primeira dobra */
+.dobra { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); padding-block: clamp(56px, 11vw, 132px) clamp(40px, 6vw, 64px); }
+.dobra .mostrador { position: absolute; right: clamp(-180px, -10vw, -40px); top: clamp(-40px, -2vw, 0px); width: clamp(300px, 46vw, 620px); color: var(--accent); pointer-events: none; }
+.dobra .mostrador .aro { opacity: .09; }
+.dobra .mostrador .ponteiro { opacity: .55; }
+.dobra .mostrador svg { width: 100%; height: auto; animation: assenta 1.6s cubic-bezier(.2,.7,.1,1) both; transform-origin: 50% 50%; }
+@keyframes assenta { from { transform: rotate(-300deg) } to { transform: rotate(0) } }
+.dobra h1 { position: relative; font-size: clamp(42px, 7.4vw, 92px); line-height: .98; font-variation-settings: "opsz" 96; max-width: 13ch; }
+.dobra .lead { position: relative; margin-top: clamp(24px, 3vw, 36px); font-size: clamp(19px, 2.1vw, 22px); line-height: 1.5; max-width: 48ch; }
+.btn { display: inline-flex; align-items: center; gap: 12px; margin-top: 36px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 700; font-size: 17px; padding: 15px 22px; border-radius: 4px; }
+.btn:hover { text-decoration: none; filter: brightness(1.12); }
+.btn .cunha { width: 11px; height: 11px; background: currentColor; clip-path: polygon(0 100%, 100% 0, 100% 62%, 42% 100%); }
+.verbete { position: relative; margin-top: clamp(48px, 7vw, 88px); font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.verbete b { font-family: var(--fd); font-weight: 600; font-size: 17px; color: var(--fg); }
+.verbete i { font-style: italic; }
+
+/* capítulos */
+.cap { border-bottom: 1px solid var(--line); padding-block: clamp(56px, 8vw, 104px); }
+.cap .grade { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 24px clamp(32px, 5vw, 72px); }
+@media (max-width: 820px) { .cap .grade { grid-template-columns: minmax(0, 1fr); } }
+.cap h2 { font-size: clamp(30px, 3.8vw, 44px); line-height: 1.05; font-variation-settings: "opsz" 72; }
+/* o bloco encerra os títulos de capítulo */
+.cap h2::after { content: ""; display: inline-block; width: .3em; height: .3em; background: var(--accent); margin-left: .16em; }
+.cap .intro { margin-top: 16px; color: var(--muted); font-size: 16px; max-width: 34ch; }
+.cap .corpo { min-width: 0; }
+
+/* a cunha marca as listas */
+ul.k { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; }
+ul.k li { position: relative; padding-left: 28px; max-width: 64ch; }
+ul.k li::before { content: ""; position: absolute; left: 0; top: .5em; width: 12px; height: 12px; background: var(--accent); clip-path: polygon(0 100%, 100% 0, 100% 62%, 42% 100%); }
+ul.k b { font-weight: 700; }
+ul.k.duas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; }
+@media (max-width: 640px) { ul.k.duas { grid-template-columns: minmax(0, 1fr); } }
+.legenda { margin-top: 36px; font-size: 14px; color: var(--muted); }
+
+/* projetos */
+.projetos { display: grid; }
+.proj { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: 16px 40px; padding-block: 36px; border-top: 1px solid var(--line); }
+.proj:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 640px) { .proj { grid-template-columns: minmax(0, 1fr); } }
+.proj .nome { font-family: var(--fd); font-weight: 600; font-size: 24px; line-height: 1.15; font-variation-settings: "opsz" 24; }
+.estado { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.estado::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--accent); box-sizing: border-box; }
+.estado.ar::before, .estado.prod::before { background: var(--accent); }
+.estado.ar { color: var(--accent); }
+.proj h3 { font-size: clamp(21px, 2.2vw, 25px); line-height: 1.25; font-variation-settings: "opsz" 32; max-width: 30ch; }
+.proj .txt { margin-top: 12px; }
+.proj ul.k { margin-top: 20px; gap: 14px; }
+.proj ul.k .lk { font-size: 14px; white-space: nowrap; }
+.proj .rodape { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; color: var(--muted); }
+.proj .rodape a { font-weight: 700; }
+.proj .falta { margin-top: 4px; padding: 14px 16px; border: 1px dashed var(--line); color: var(--muted); font-size: 15px; border-radius: 4px; max-width: 48ch; }
+
+/* areia */
+.cap.areia { background: var(--areia-bg); border-bottom: 0; }
+.cap.areia p { font-size: 19px; line-height: 1.55; }
+
+/* fundador */
+.cargo { margin-top: 8px; color: var(--muted); font-size: 16px; }
+.cap .corpo .menor { margin-top: 20px; font-size: 15px; color: var(--muted); }
+.redes { margin-top: 22px; display: flex; gap: 22px; font-weight: 700; }
+
+/* contato */
+.contato { padding-block: clamp(72px, 11vw, 140px); border-bottom: 1px solid var(--line); }
+.contato h2 { font-size: clamp(34px, 5.6vw, 68px); line-height: 1.02; font-variation-settings: "opsz" 96; max-width: 17ch; }
+.contato p { margin-top: 22px; font-size: 19px; max-width: 46ch; }
+.email { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+.email a { font-family: var(--fd); font-weight: 500; font-size: clamp(22px, 3.4vw, 36px); color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; overflow-wrap: anywhere; }
+.email a:hover { color: var(--accent); }
+/* o bloco pisca onde a Kairon espera você */
+.cursor { flex: none; width: .5em; height: .5em; background: var(--accent); animation: pisca 1.1s steps(1, end) infinite; }
+@keyframes pisca { 50% { opacity: 0 } }
+.copiar { font: 700 14px var(--ft); color: var(--accent); background: none; border: 1px solid var(--line); padding: 7px 12px; border-radius: 3px; cursor: pointer; }
+.copiar:hover { border-color: var(--accent); }
+
+footer { padding-block: 40px 56px; font-size: 14px; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+footer .marca { display: flex; align-items: center; gap: 16px; color: var(--fg); }
+footer .marca .logo { width: 84px; color: var(--logo); }
+footer a { color: var(--muted); }
+
+
+/* ---------- movimento ---------- */
+.entra .w { display: inline-block; animation: palavra .9s cubic-bezier(.2,.7,.1,1) both; animation-delay: calc(var(--i) * 70ms + 120ms); }
+@keyframes palavra { from { opacity: 0; filter: blur(10px); transform: translateY(.28em) } to { opacity: 1; filter: blur(0); transform: none } }
+.gira { position: relative; margin-top: 20px; font-family: var(--fd); font-weight: 500; font-size: clamp(22px, 2.7vw, 32px); line-height: 1.2; font-variation-settings: "opsz" 48; display: flex; flex-wrap: wrap; align-items: center; gap: 0 .28em; max-width: none; }
+.gira > span:first-child { color: var(--muted); }
+.gira .frase { color: var(--accent); white-space: pre-wrap; }
+.gira .cursor { width: .42em; height: .42em; margin-left: .08em; }
+
+.espera { opacity: 0; transform: translateY(18px); }
+.revela { transition: opacity .8s cubic-bezier(.2,.7,.1,1), transform .8s cubic-bezier(.2,.7,.1,1); transition-delay: calc(var(--d, 0) * 80ms); }
+
+ul.k li::before { transition: transform .35s cubic-bezier(.2,.7,.1,1); }
+ul.k li:hover::before { transform: translate(3px, -3px); }
+
+.proj { position: relative; padding-inline: 20px; margin-inline: -20px; border-radius: 6px; }
+.proj > * { position: relative; z-index: 1; }
+
+.btn { transition: transform .25s cubic-bezier(.2,.7,.1,1), filter .2s; }
+.btn .cunha, .redes .cunha { transition: transform .3s cubic-bezier(.2,.7,.1,1); }
+.btn:hover .cunha, .redes a:hover .cunha { transform: translate(3px, -3px); }
+
+.numeros { margin: 40px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; border-top: 1px solid var(--line); padding-top: 28px; }
+@media (max-width: 640px) { .numeros { grid-template-columns: minmax(0, 1fr); } }
+.numeros dt { font-family: var(--fd); font-weight: 500; font-size: clamp(44px, 5vw, 64px); line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; font-variation-settings: "opsz" 96; }
+.numeros dd { margin: 10px 0 0; font-size: 15px; color: var(--muted); max-width: 26ch; }
+
+.ct { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 48px clamp(40px, 6vw, 96px); align-items: end; }
+@media (max-width: 820px) { .ct { grid-template-columns: minmax(0, 1fr); } .foto { max-width: 360px; } }
+.ct-txt { min-width: 0; }
+.redes { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px 28px; font-weight: 700; }
+.redes a { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.redes a:hover { text-decoration: underline; }
+.redes .cunha { width: 10px; height: 10px; background: currentColor; clip-path: polygon(0 100%, 100% 0, 100% 62%, 42% 100%); }
+.foto { margin: 0; }
+/* o canto cortado repete o ângulo da fenda: uma hora */
+.moldura { overflow: hidden; aspect-ratio: 4 / 5; max-width: 100%; background: var(--areia-bg); clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 83px, 100% 100%, 0 100%); }
+.moldura img { display: block; width: 100%; height: 112%; object-fit: cover; transform: translateY(var(--py, -6%)); transition: scale .8s cubic-bezier(.2,.7,.1,1); }
+.foto:hover .moldura img { scale: 1.03; }
+.foto figcaption { margin-top: 14px; display: grid; gap: 2px; font-size: 14px; color: var(--muted); }
+.foto figcaption b { font-family: var(--fd); font-weight: 600; font-size: 18px; color: var(--fg); }
+.relogio { margin-top: 6px; font-variant-numeric: tabular-nums; }
+
+/* ---------- versão visual: menos texto, um desenho por ideia ---------- */
+.cap .cabeca { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 32px; margin-bottom: clamp(28px, 4vw, 48px); }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 980px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .tiles { grid-template-columns: minmax(0, 1fr); } }
+.tile { display: grid; align-content: start; gap: 14px; min-width: 0; }
+.tile h3 { font-size: 20px; line-height: 1.2; font-weight: 600; font-variation-settings: "opsz" 24; }
+.tile p { margin-top: -6px; font-size: 15px; line-height: 1.5; color: var(--muted); }
+
+.bento { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 720px) { .bento { grid-template-columns: minmax(0, 1fr); } }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 14px 14px 22px; display: grid; align-content: start; gap: 16px; min-width: 0; transition: border-color .3s, transform .4s cubic-bezier(.2,.7,.1,1); }
+.card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); transform: translateY(-3px); }
+.card .info { padding-inline: 6px; display: grid; gap: 8px; }
+.card .linha { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.card .nome { font-family: var(--fd); font-weight: 600; font-size: 24px; line-height: 1.15; font-variation-settings: "opsz" 24; }
+.card .estado { margin-top: 0; }
+.card p { font-size: 16px; line-height: 1.5; }
+.card .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; font-weight: 700; }
+.card.largo { grid-column: 1 / -1; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; gap: 16px 28px; }
+@media (max-width: 720px) { .card.largo { grid-template-columns: minmax(0, 1fr); } }
+.apps { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; font-size: 15px; }
+.apps li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+.apps b { font-weight: 700; margin-right: auto; }
+.apps a { font-size: 14px; }
+
+.faixa { overflow: hidden; border-bottom: 1px solid var(--line); padding-block: clamp(26px, 4vw, 40px); }
+.trilho { display: flex; width: max-content; animation: corre 42s linear infinite; }
+.faixa:hover .trilho { animation-play-state: paused; }
+.trilho .um, .trilho .dois { display: flex; }
+.trilho span { display: inline-flex; align-items: center; gap: 18px; padding-right: 40px; white-space: nowrap; font-family: var(--fd); font-weight: 500; font-size: clamp(24px, 3.2vw, 38px); font-variation-settings: "opsz" 48; }
+.trilho span::before { content: ""; width: .34em; height: .34em; background: var(--accent); clip-path: polygon(0 100%, 100% 0, 100% 62%, 42% 100%); }
+@keyframes corre { to { transform: translateX(-50%) } }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.cap.areia p { font-size: clamp(19px, 2vw, 22px); line-height: 1.5; font-family: var(--fd); font-weight: 400; font-variation-settings: "opsz" 24; max-width: 46ch; }
+
+.contato { padding-block: clamp(64px, 9vw, 120px); }
+.ct { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); align-items: center; }
+.foto .bio { margin-top: 10px; font-size: 14px; color: var(--muted); max-width: 34ch; }
+.ct-txt .numeros { margin-top: 44px; }
+@keyframes rg0 { 0%, 25% { opacity: 0; transform: none } 26%, 62% { opacity: 1; transform: none } 74% { opacity: 1; transform: translate(118px, -6px) } 79%, 100% { opacity: 0; transform: translate(118px, -6px) } }
+.rg0 { animation: rg0 7s infinite; }
+@keyframes rg1 { 0%, 33% { opacity: 0; transform: none } 34%, 65% { opacity: 1; transform: none } 77% { opacity: 1; transform: translate(118px, -6px) } 82%, 100% { opacity: 0; transform: translate(118px, -6px) } }
+.rg1 { animation: rg1 7s infinite; }
+@keyframes rg2 { 0%, 41% { opacity: 0; transform: none } 42%, 68% { opacity: 1; transform: none } 80% { opacity: 1; transform: translate(118px, -6px) } 85%, 100% { opacity: 0; transform: translate(118px, -6px) } }
+.rg2 { animation: rg2 7s infinite; }
+@keyframes no0 { 0%, 94% { fill: var(--accent) } 100% { fill: var(--bg) } }
+.no0 { animation: no0 7s infinite; }
+@keyframes no1 { 0%, 13.5% { fill: var(--bg) } 14%, 94% { fill: var(--accent) } 100% { fill: var(--bg) } }
+.no1 { animation: no1 7s infinite; }
+@keyframes no2 { 0%, 27.5% { fill: var(--bg) } 28%, 94% { fill: var(--accent) } 100% { fill: var(--bg) } }
+.no2 { animation: no2 7s infinite; }
+@keyframes no3 { 0%, 62% { fill: var(--bg) } 62.5%, 94% { fill: var(--accent) } 100% { fill: var(--bg) } }
+.no3 { animation: no3 7s infinite; }
+@keyframes no4 { 0%, 74.5% { fill: var(--bg) } 75%, 94% { fill: var(--accent) } 100% { fill: var(--bg) } }
+.no4 { animation: no4 7s infinite; }
+@keyframes ok0 { 0%, 10% { transform: scale(0) } 13% { transform: scale(1.15) } 16%, 90% { transform: scale(1) } 96%, 100% { transform: scale(0) } }
+.ok0 { animation: ok0 8s infinite; }
+@keyframes ok1 { 0%, 22% { transform: scale(0) } 25% { transform: scale(1.15) } 28%, 90% { transform: scale(1) } 96%, 100% { transform: scale(0) } }
+.ok1 { animation: ok1 8s infinite; }
+@keyframes ok2 { 0%, 34% { transform: scale(0) } 37% { transform: scale(1.15) } 40%, 90% { transform: scale(1) } 96%, 100% { transform: scale(0) } }
+.ok2 { animation: ok2 8s infinite; }
+@keyframes ok3 { 0%, 46% { transform: scale(0) } 49% { transform: scale(1.15) } 52%, 90% { transform: scale(1) } 96%, 100% { transform: scale(0) } }
+.ok3 { animation: ok3 8s infinite; }
+
+.viz { background: var(--soft); border-radius: 6px; overflow: hidden; }
+.viz svg { width: 100%; height: auto; }
+.viz .ln { fill: none; stroke: var(--trace); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.viz .fb.ln { fill: var(--bg); }
+.viz .lna { stroke: var(--accent); }
+.viz .fa { fill: var(--accent); } .viz .fs { fill: var(--acc-soft); } .viz .fr { fill: var(--areia); } .viz .ft { fill: var(--trace); } .viz .fb { fill: var(--bg); }
+.viz .no { stroke: var(--accent); stroke-width: 2.5; fill: var(--accent); }
+.viz .chk { fill: none; stroke: var(--on-accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.viz .tx { font: 12px var(--ft); fill: var(--muted); } .viz .txa { fill: var(--accent); font-weight: 700; }
+.viz rect, .viz g, .viz circle { transform-box: fill-box; transform-origin: center; }
+
+.mb { animation: mb 6s infinite both; }
+@keyframes mb { 0% { opacity: 0; transform: translateY(-10px) } 12%, 80% { opacity: 1; transform: none } 92%, 100% { opacity: 0; transform: none } }
+.fio { animation: fio 7s infinite; }
+@keyframes fio { 0%, 18% { opacity: 1 } 22%, 58% { opacity: .15 } 62%, 100% { opacity: 1 } }
+.corte { opacity: 0; animation: corte 7s infinite; }
+@keyframes corte { 0%, 19% { opacity: 0 } 22%, 56% { opacity: 1 } 59%, 100% { opacity: 0 } }
+.sv { animation: sv 7s infinite; }
+@keyframes sv { 0%, 72% { fill: var(--acc-soft) } 80% { fill: var(--accent) } 92%, 100% { fill: var(--acc-soft) } }
+.prog { transform-origin: left center; animation: prog 7s infinite; }
+@keyframes prog { 0% { transform: scaleX(0) } 28%, 50% { transform: scaleX(.5) } 75%, 96% { transform: scaleX(1) } 100% { transform: scaleX(1); opacity: 0 } }
+.falha { opacity: 0; animation: falha 7s steps(1, end) infinite; }
+@keyframes falha { 0% { opacity: 0 } 29% { opacity: 1 } 33% { opacity: 0 } 37% { opacity: 1 } 41% { opacity: 0 } 45% { opacity: 1 } 49%, 100% { opacity: 0 } }
+.barra { transform-origin: left center; }
+.b1 { animation: b1 6s infinite; } .b2 { animation: b2 6s infinite; }
+@keyframes b1 { 0% { transform: scaleX(0) } 25%, 94% { transform: scaleX(1); opacity: 1 } 100% { opacity: 0 } }
+@keyframes b2 { 0%, 35% { transform: scaleX(0) } 48%, 94% { transform: scaleX(1); opacity: 1 } 100% { opacity: 0 } }
+.lota { transform-origin: left center; transform: scaleX(.8); animation: lota 8s infinite; }
+@keyframes lota { 0%, 10% { transform: scaleX(0) } 52%, 90% { transform: scaleX(.8) } 96%, 100% { transform: scaleX(0) } }
+.cabeca { opacity: 0; animation: cabeca 8s infinite; }
+@keyframes cabeca { 0% { opacity: 1; transform: translateX(0) } 40% { opacity: 1; transform: translateX(272px) } 42%, 100% { opacity: 0; transform: translateX(272px) } }
+.marca { animation: marca 8s infinite; }
+@keyframes marca { 0%, 38% { opacity: 0 } 46%, 92% { opacity: 1 } 98%, 100% { opacity: 0 } }
+.preg { animation: preg 8s infinite; }
+@keyframes preg { 0%, 38% { fill: var(--acc-soft) } 46%, 92% { fill: var(--accent); opacity: .35 } 100% { fill: var(--acc-soft) } }
+.clip { animation: clip 8s infinite; }
+@keyframes clip { 0%, 50% { opacity: 0; transform: translateY(-70px) } 64%, 92% { opacity: 1; transform: none } 98%, 100% { opacity: 0; transform: none } }
+.conta { animation: conta 9s infinite both; }
+@keyframes conta { 0%, 4% { fill: var(--trace) } 10%, 78% { fill: var(--accent) } 86%, 100% { fill: var(--trace) } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  .dobra .mostrador svg, .cursor, .entra .w { animation: none; }
+  .espera { opacity: 1; transform: none; }
+  .viz *, .trilho { animation: none !important; }
+  .faixa .dois { display: none; }
+  .trilho { width: auto; } .trilho .um { flex-wrap: wrap; row-gap: 8px; padding-inline: clamp(16px, 4vw, 48px); }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#conteudo">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#topo" aria-label="Kairon"><svg role="img" aria-label="Kairon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.75 98.13"><g transform="translate(-6.72,93.93)"><path d="M9.359999656677246 0.0V-79.19999694824219H24.479999542236328V-42.959999084472656Q30.719999313354492 -45.47999954223633 36.359999656677246 -49.3799991607666Q42.0 -53.279998779296875 46.6200008392334 -58.13999938964844Q51.2400016784668 -63.0 54.540000915527344 -68.34000015258789Q57.84000015258789 -73.68000030517578 59.400001525878906 -79.19999694824219H76.68000030517578Q74.76000213623047 -72.95999908447266 71.15999984741211 -67.02000045776367Q67.55999755859375 -61.08000183105469 62.81999969482422 -55.98000144958496Q58.08000183105469 -50.880001068115234 52.80000114440918 -46.98000144958496Q47.52000045776367 -43.08000183105469 42.2400016784668 -40.68000030517578V-39.119998931884766Q47.880001068115234 -39.0 52.380001068115234 -37.68000030517578Q56.880001068115234 -36.36000061035156 60.48000144958496 -33.53999996185303Q64.08000183105469 -30.719999313354492 66.84000015258789 -26.519999504089355Q69.5999984741211 -22.31999969482422 71.76000213623047 -16.559999465942383L77.76000213623047 0.0H60.599998474121094L56.7599983215332 -13.079999923706055Q54.599998474121094 -19.559999465942383 51.599998474121094 -23.519999504089355Q48.599998474121094 -27.479999542236328 43.79999923706055 -29.399999618530273Q39.0 -31.31999969482422 31.559999465942383 -31.31999969482422H24.479999542236328V0.0ZM102.4800033569336 1.559999942779541Q97.31999969482422 1.559999942779541 93.2400016784668 -0.4200000762939453Q89.16000366210938 -2.4000000953674316 86.82000350952148 -6.359999895095825Q84.4800033569336 -10.319999694824219 84.4800033569336 -16.200000762939453Q84.4800033569336 -21.1200008392334 86.34000015258789 -24.600000381469727Q88.19999694824219 -28.079999923706055 91.91999816894531 -30.300000190734863Q95.63999938964844 -32.52000045776367 101.15999984741211 -34.02000045776367Q106.68000030517578 -35.52000045776367 114.12000274658203 -36.599998474121094Q118.19999694824219 -37.20000076293945 120.77999877929688 -37.80000114440918Q123.36000061035156 -38.400001525878906 124.56000137329102 -39.65999984741211Q125.76000213623047 -40.91999816894531 125.76000213623047 -43.439998626708984Q125.76000213623047 -47.15999984741211 123.18000030517578 -49.86000061035156Q120.5999984741211 -52.560001373291016 114.83999633789062 -52.560001373291016Q111.36000061035156 -52.560001373291016 108.18000030517578 -51.36000061035156Q105.0 -50.15999984741211 102.72000122070312 -47.579999923706055Q100.44000244140625 -45.0 99.5999984741211 -40.79999923706055L86.04000091552734 -45.0Q87.36000061035156 -49.79999923706055 89.88000106811523 -53.34000015258789Q92.4000015258789 -56.880001068115234 96.11999893188477 -59.39999961853027Q99.83999633789062 -61.91999816894531 104.63999938964844 -63.119998931884766Q109.44000244140625 -64.31999969482422 115.19999694824219 -64.31999969482422Q123.95999908447266 -64.31999969482422 129.60000228881836 -61.5Q135.24000549316406 -58.68000030517578 138.0 -52.739999771118164Q140.75999450683594 -46.79999923706055 140.75999450683594 -37.439998626708984V-25.68000030517578Q140.75999450683594 -21.600000381469727 140.93999481201172 -17.22000026702881Q141.1199951171875 -12.84000015258789 141.4199981689453 -8.460000038146973Q141.72000122070312 -4.079999923706055 142.1999969482422 0.0H128.63999938964844Q128.16000366210938 -3.359999895095825 127.80000305175781 -7.199999928474426Q127.44000244140625 -11.039999961853027 127.19999694824219 -15.0H125.27999877929688Q123.5999984741211 -10.4399995803833 120.47999954223633 -6.659999847412109Q117.36000061035156 -2.880000114440918 112.86000061035156 -0.6600000858306885Q108.36000061035156 1.559999942779541 102.4800033569336 1.559999942779541ZM305.5199890136719 0.0V-62.7599983215332H318.1199951171875L317.760009765625 -43.560001373291016H319.9200134277344Q321.6000061035156 -50.63999938964844 324.4199981689453 -55.19999885559082Q327.239990234375 -59.7599983215332 331.67999267578125 -62.03999900817871Q336.1199951171875 -64.31999969482422 342.0 -64.31999969482422Q352.67999267578125 -64.31999969482422 358.25999450683594 -56.760000228881836Q363.8399963378906 -49.20000076293945 363.8399963378906 -33.36000061035156V0.0H348.6000061035156V-31.799999237060547Q348.6000061035156 -42.0 345.5400085449219 -46.739999771118164Q342.4800109863281 -51.47999954223633 336.4800109863281 -51.47999954223633Q331.44000244140625 -51.47999954223633 327.9600067138672 -48.29999923706055Q324.4800109863281 -45.119998931884766 322.62001037597656 -39.89999961853027Q320.760009765625 -34.68000030517578 320.6400146484375 -28.440000534057617V0.0ZM262.32000732421875 1.559999942779541Q253.0800018310547 1.559999942779541 246.0 -2.2200000286102295Q238.9199981689453 -6.0 234.9000015258789 -13.380000114440918Q230.8800048828125 -20.760000228881836 230.8800048828125 -31.559999465942383Q230.8800048828125 -42.599998474121094 235.02000427246094 -49.85999870300293Q239.16000366210938 -57.119998931884766 246.24000549316406 -60.71999931335449Q253.32000732421875 -64.31999969482422 262.20001220703125 -64.31999969482422Q268.9725646972656 -64.31999969482422 274.584716796875 -62.321495056152344L268.17822265625 -51.22513961791992Q265.3948059082031 -52.31999969482422 261.8399963378906 -52.31999969482422Q257.0400085449219 -52.31999969482422 253.44000244140625 -49.97999954223633Q249.83999633789062 -47.63999938964844 247.97999572753906 -43.079999923706055Q246.1199951171875 -38.52000045776367 246.1199951171875 -31.799999237060547Q246.1199951171875 -21.239999771118164 250.6199951171875 -15.599999904632568Q255.1199951171875 -9.960000038146973 262.9200134277344 -9.960000038146973Q267.9599914550781 -9.960000038146973 271.44000244140625 -12.300000190734863Q274.9200134277344 -14.640000343322754 276.78001403808594 -19.320000171661377Q278.6400146484375 -24.0 278.6400146484375 -30.479999542236328Q278.6400146484375 -37.31999969482422 276.6600036621094 -42.18000030517578Q276.1473083496094 -43.43840026855469 275.5219421386719 -44.54804992675781L283.05352783203125 -57.59312438964844Q287.0094299316406 -54.33061218261719 289.67999267578125 -49.5Q293.760009765625 -42.119998931884766 293.760009765625 -31.200000762939453Q293.760009765625 -20.15999984741211 289.6800079345703 -12.839999914169312Q285.6000061035156 -5.519999980926514 278.4600067138672 -1.9800000190734863Q271.32000732421875 1.559999942779541 262.32000732421875 1.559999942779541ZM185.63999938964844 0.0V-62.7599983215332H198.36000061035156L198.1199951171875 -41.15999984741211H200.27999877929688Q201.36000061035156 -48.84000015258789 203.63999938964844 -53.94000053405762Q205.9199981689453 -59.040000915527344 210.0 -61.619998931884766Q214.0800018310547 -64.19999694824219 220.0800018310547 -64.19999694824219Q221.27999877929688 -64.19999694824219 222.65999603271484 -64.07999801635742Q224.0399932861328 -63.959999084472656 225.72000122070312 -63.47999954223633L225.1199951171875 -47.52000045776367Q223.1999969482422 -48.2400016784668 221.22000122070312 -48.540000915527344Q219.24000549316406 -48.84000015258789 217.55999755859375 -48.84000015258789Q212.8800048828125 -48.84000015258789 209.45999908447266 -46.44000053405762Q206.0399932861328 -44.040000915527344 203.93999481201172 -39.65999984741211Q201.83999633789062 -35.279998779296875 200.75999450683594 -29.280000686645508V0.0ZM155.27999877929688 0.0V-62.7599983215332H170.39999389648438V0.0ZM108.4800033569336 -9.600000381469727Q110.87999725341797 -9.600000381469727 113.34000015258789 -10.440000057220459Q115.80000305175781 -11.279999732971191 118.20000076293945 -12.960000038146973Q120.5999984741211 -14.640000343322754 122.63999938964844 -17.09999990463257Q124.68000030517578 -19.559999465942383 126.12000274658203 -22.920000076293945L125.93064880371094 -31.3461971282959Q124.8995361328125 -30.857452392578125 123.72000122070312 -30.479999542236328Q120.72000122070312 -29.520000457763672 117.42000198364258 -29.039999961853027Q114.12000274658203 -28.559999465942383 110.81999969482422 -27.899999618530273Q107.5199966430664 -27.239999771118164 104.87999725341797 -26.22000026702881Q102.23999786376953 -25.200000762939453 100.68000030517578 -23.34000015258789Q99.12000274658203 -21.479999542236328 99.12000274658203 -18.239999771118164Q99.12000274658203 -14.15999984741211 101.76000213623047 -11.880000114440918Q104.4000015258789 -9.600000381469727 108.4800033569336 -9.600000381469727ZM153.55079650878906 -91.29840087890625H172.24920654296875V-72.5999984741211H153.55079650878906ZM265.236328125 -29.696250915527344 259.4036560058594 -33.063751220703125 268.145263671875 -44.16365432739258 270.47833251953125 -42.816654205322266Z" fill="currentColor"/></g></svg></a>
+  <nav><a class="sec" href="#trabalho">Work</a><a class="sec" href="#contato">Contact</a></nav>
+</div></header>
+<main id="conteudo">
+<section class="dobra" id="topo"><div class="wrap">
+  <div class="mostrador" aria-hidden="true"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g transform="translate(-196.87,79.53) scale(0.9411)"><path class="aro" d="M262.32000732421875 1.559999942779541Q253.0800018310547 1.559999942779541 246.0 -2.2200000286102295Q238.9199981689453 -6.0 234.9000015258789 -13.380000114440918Q230.8800048828125 -20.760000228881836 230.8800048828125 -31.559999465942383Q230.8800048828125 -42.599998474121094 235.02000427246094 -49.85999870300293Q239.16000366210938 -57.119998931884766 246.24000549316406 -60.71999931335449Q253.32000732421875 -64.31999969482422 262.20001220703125 -64.31999969482422Q268.9725646972656 -64.31999969482422 274.584716796875 -62.321495056152344L268.17822265625 -51.22513961791992Q265.3948059082031 -52.31999969482422 261.8399963378906 -52.31999969482422Q257.0400085449219 -52.31999969482422 253.44000244140625 -49.97999954223633Q249.83999633789062 -47.63999938964844 247.97999572753906 -43.079999923706055Q246.1199951171875 -38.52000045776367 246.1199951171875 -31.799999237060547Q246.1199951171875 -21.239999771118164 250.6199951171875 -15.599999904632568Q255.1199951171875 -9.960000038146973 262.9200134277344 -9.960000038146973Q267.9599914550781 -9.960000038146973 271.44000244140625 -12.300000190734863Q274.9200134277344 -14.640000343322754 276.78001403808594 -19.320000171661377Q278.6400146484375 -24.0 278.6400146484375 -30.479999542236328Q278.6400146484375 -37.31999969482422 276.6600036621094 -42.18000030517578Q276.1473083496094 -43.43840026855469 275.5219421386719 -44.54804992675781L283.05352783203125 -57.59312438964844Q287.0094299316406 -54.33061218261719 289.67999267578125 -49.5Q293.760009765625 -42.119998931884766 293.760009765625 -31.200000762939453Q293.760009765625 -20.15999984741211 289.6800079345703 -12.839999914169312Q285.6000061035156 -5.519999980926514 278.4600067138672 -1.9800000190734863Q271.32000732421875 1.559999942779541 262.32000732421875 1.559999942779541Z" fill="currentColor"/><path class="ponteiro" d="M265.236328125 -29.696250915527344 259.4036560058594 -33.063751220703125 268.145263671875 -44.16365432739258 270.47833251953125 -42.816654205322266Z" fill="currentColor"/></g></svg></div>
+  <h1 class="entra">Software that works when it matters.</h1>
+  <p class="gira" aria-live="off"><span>It works</span> <span class="frase" data-frases="offline.|at peak traffic.|when something fails midway.|by the agreed date.">offline.</span><span class="cursor" aria-hidden="true"></span></p>
+  <p class="lead">You talk directly to the person who writes the code.</p>
+  <a class="btn ima" href="#contato">Tell us about it <span class="cunha" aria-hidden="true"></span></a>
+  <p class="verbete"><b>kairós</b><i>Greek</i><span>the right moment to act.</span></p>
+</div></section>
+
+<section class="cap" id="faz"><div class="wrap">
+  <div class="cabeca"><h2>What we do</h2></div>
+  <div class="tiles"><div class="tile"><div class="viz"><svg viewBox="0 0 240 150" aria-hidden="true"><rect class="fb ln" x="40" y="18" width="160" height="114" rx="6"/><rect class="fa mb" style="animation-delay:0.0s" x="52" y="30" width="136" height="14" rx="2"/><rect class="fr mb" style="animation-delay:0.3s" x="52" y="52" width="36" height="68" rx="2"/><rect class="fs mb" style="animation-delay:0.6s" x="96" y="52" width="92" height="30" rx="2"/><rect class="fs mb" style="animation-delay:0.9s" x="96" y="88" width="44" height="32" rx="2"/><rect class="fa mb" style="animation-delay:1.2s" x="144" y="88" width="44" height="32" rx="2"/></svg></div><h3>Custom software</h3><p>From first sketch to a live system: backend, web and mobile.</p></div><div class="tile"><div class="viz"><svg viewBox="0 0 240 150" aria-hidden="true">
+<rect class="fb ln" x="34" y="22" width="48" height="106" rx="8"/><rect class="ft" x="52" y="118" width="12" height="3" rx="1.5"/>
+<rect class="fs sv" style="animation-delay:0.00s" x="168" y="48" width="44" height="14" rx="2"/><rect class="fs sv" style="animation-delay:0.15s" x="168" y="68" width="44" height="14" rx="2"/><rect class="fs sv" style="animation-delay:0.30s" x="168" y="88" width="44" height="14" rx="2"/>
+<line class="ln fio" x1="90" y1="75" x2="160" y2="75" stroke-dasharray="4 5"/>
+<g class="fio"><path class="ln" d="M113 60 q12 -10 24 0"/><path class="ln" d="M118 66 q7 -6 14 0"/></g>
+<rect class="fa corte" x="120" y="70" width="10" height="10"/>
+<rect class="fa rg rg0" x="48" y="98" width="20" height="8" rx="1.5"/><rect class="fa rg rg1" x="48" y="86" width="20" height="8" rx="1.5"/><rect class="fa rg rg2" x="48" y="74" width="20" height="8" rx="1.5"/></svg></div><h3>Works without internet</h3><p>Work stays on the device and syncs when the connection returns.</p></div><div class="tile"><div class="viz"><svg viewBox="0 0 240 150" aria-hidden="true">
+<line class="ln" x1="36" y1="78" x2="204" y2="78"/>
+<rect class="fa prog" x="36" y="75" width="168" height="6" rx="3"/>
+<circle class="fb no no0" cx="36" cy="78" r="7"/><circle class="fb no no1" cx="78" cy="78" r="7"/><circle class="fb no no2" cx="120" cy="78" r="7"/><circle class="fb no no3" cx="162" cy="78" r="7"/><circle class="fb no no4" cx="204" cy="78" r="7"/>
+<rect class="fa falha" x="114" y="44" width="12" height="12"/>
+</svg></div><h3>Processes that don't get lost</h3><p>If something fails midway, it resumes where it stopped.</p></div><div class="tile"><div class="viz"><svg viewBox="0 0 240 150" aria-hidden="true">
+<text class="tx" x="30" y="48">before</text><text class="tx" x="210" y="48" text-anchor="end">3,519 ms</text>
+<rect class="ft barra b1" x="30" y="56" width="180" height="16" rx="2"/>
+<text class="tx" x="30" y="98">after</text><text class="tx txa" x="210" y="98" text-anchor="end">470 ms</text>
+<rect class="fa barra b2" x="30" y="106" width="24" height="16" rx="2"/>
+</svg></div><h3>Technical diagnosis</h3><p>We measure, find the cause and tell you what to do.</p></div></div>
+</div></section>
+
+<section class="cap" id="trabalho"><div class="wrap">
+  <div class="cabeca"><h2>Work</h2></div>
+  <div class="bento">
+    <article class="card"><div class="viz"><svg viewBox="0 0 320 170" aria-hidden="true"><circle class="fr" cx="40" cy="26" r="7"/><rect class="ft" x="56" y="22" width="150" height="8" rx="4"/><g class="ok ok0"><circle class="fa" cx="276" cy="26" r="9"/><path class="chk" d="M271.5 26 l3 3 l6 -6.5"/></g><circle class="fr" cx="40" cy="50" r="7"/><rect class="ft" x="56" y="46" width="120" height="8" rx="4"/><g class="ok ok1"><circle class="fa" cx="276" cy="50" r="9"/><path class="chk" d="M271.5 50 l3 3 l6 -6.5"/></g><circle class="fr" cx="40" cy="74" r="7"/><rect class="ft" x="56" y="70" width="170" height="8" rx="4"/><circle class="fb ln" cx="276" cy="74" r="8"/><circle class="fr" cx="40" cy="98" r="7"/><rect class="ft" x="56" y="94" width="96" height="8" rx="4"/><g class="ok ok2"><circle class="fa" cx="276" cy="98" r="9"/><path class="chk" d="M271.5 98 l3 3 l6 -6.5"/></g><circle class="fr" cx="40" cy="122" r="7"/><rect class="ft" x="56" y="118" width="136" height="8" rx="4"/><g class="ok ok3"><circle class="fa" cx="276" cy="122" r="9"/><path class="chk" d="M271.5 122 l3 3 l6 -6.5"/></g>
+<rect class="ft" x="32" y="148" width="256" height="6" rx="3"/><rect class="fa lota" x="32" y="148" width="256" height="6" rx="3"/></svg></div><div class="info"><div class="linha"><span class="nome">Aisle</span><span class="estado ar">Live</span></div><p>Wedding guest lists, from the first name to the last yes.</p><div class="links"><a href="https://aisle-two-phi.vercel.app/" rel="noopener">Open Aisle</a></div></div></article>
+    <article class="card"><div class="viz"><svg viewBox="0 0 320 170" aria-hidden="true">
+<rect class="fr" x="24" y="42" width="80" height="30" rx="2"/>
+<rect class="fs preg" x="108" y="42" width="140" height="30" rx="2"/>
+<rect class="fr" x="252" y="42" width="44" height="30" rx="2"/>
+<g class="marca"><path class="ln lna" d="M110 34 h-6 v46 h6"/><path class="ln lna" d="M246 34 h6 v46 h-6"/></g>
+<rect class="fa cabeca" x="23" y="32" width="2" height="50"/>
+<g class="clip"><rect class="fa" x="108" y="112" width="140" height="30" rx="2"/><path class="fb" d="M172 119 l13 8 l-13 8 z"/></g>
+</svg></div><div class="info"><div class="linha"><span class="nome">Quick Sermon</span><span class="estado dev">In development</span></div><p>Turns a church livestream into a sermon clip, ready for YouTube.</p><div class="links"><a href="https://henokteixeira.github.io/quick-sermon/" rel="noopener">See the project</a></div></div></article>
+    <article class="card largo"><div class="viz"><svg viewBox="0 0 320 130" aria-hidden="true">
+<path class="ln" d="M20 30 Q160 190 300 30"/><circle class="fa conta" style="animation-delay:0.00s" cx="34.0" cy="45.2" r="9"/><circle class="fa conta" style="animation-delay:0.28s" cx="55.0" cy="65.0" r="9"/><circle class="fa conta" style="animation-delay:0.56s" cx="76.0" cy="81.2" r="9"/><circle class="fa conta" style="animation-delay:0.84s" cx="97.0" cy="93.8" r="9"/><circle class="fa conta" style="animation-delay:1.12s" cx="118.0" cy="102.8" r="9"/><circle class="fa conta" style="animation-delay:1.40s" cx="139.0" cy="108.2" r="9"/><circle class="fa conta" style="animation-delay:1.68s" cx="160.0" cy="110.0" r="9"/><circle class="fa conta" style="animation-delay:1.96s" cx="181.0" cy="108.2" r="9"/><circle class="fa conta" style="animation-delay:2.24s" cx="202.0" cy="102.8" r="9"/><circle class="fa conta" style="animation-delay:2.52s" cx="223.0" cy="93.8" r="9"/><circle class="fa conta" style="animation-delay:2.80s" cx="244.0" cy="81.2" r="9"/><circle class="fa conta" style="animation-delay:3.08s" cx="265.0" cy="65.0" r="9"/><circle class="fa conta" style="animation-delay:3.36s" cx="286.0" cy="45.2" r="9"/>
+<rect class="fb ln" x="237.0" y="67.8" width="9" height="9"/></svg></div><div class="info"><div class="linha"><span class="nome">Oral Bible translation</span><span class="estado prod">In use in the field</span></div><p>Apps for teams translating the Bible by ear, in the field and often offline. For an international organization.</p><ul class="apps"><li><b>Internalization Room</b><a href="https://github.com/shemaobt/internalization-room" rel="noopener">code</a></li><li><b>Sound Necklace</b><a href="https://soundnecklace.shemaywam.com/" rel="noopener">open</a></li><li><b>Oral Collector</b><a href="https://apps.apple.com/br/app/oral-collector/id6759813650" rel="noopener">iOS</a> · <a href="https://play.google.com/store/apps/details?id=com.shema.oralCollector" rel="noopener">Android</a> · <a href="https://oralcollector.shemaywam.com/" rel="noopener">web</a></li><li><b>Shared API</b><a href="https://github.com/shemaobt/shema-api" rel="noopener">code</a></li></ul></div></article>
+  </div>
+</div></section>
+
+<section class="faixa" id="como" aria-label="How we work"><h2 class="sr">How we work</h2>
+  <div class="trilho"><div class="um"><span>We measure before we touch anything</span><span>We build for the worst day</span><span>You talk to the person writing the code</span><span>Short releases</span><span>We say the limit up front</span></div><div class="dois" aria-hidden="true"><span>We measure before we touch anything</span><span>We build for the worst day</span><span>You talk to the person writing the code</span><span>Short releases</span><span>We say the limit up front</span></div></div>
+</section>
+
+<section class="cap areia" id="construindo"><div class="wrap grade">
+  <div><h2>What we're building</h2></div>
+  <div class="corpo"><p>Today we do engineering for an international organization and turn what we learn into products of our own. We use AI day to day and inside the products, held to the same bar: it has to work the moment the person needs it.</p></div>
+</div></section>
+
+<section class="contato" id="contato"><div class="wrap ct">
+  <figure class="foto">
+    <div class="moldura"><img src="assets/henok.jpg" alt="Henok Teixeira in a brown t-shirt by the sea in the late afternoon" width="800" height="1000" loading="lazy" decoding="async"></div>
+    <figcaption><b>Henok Teixeira</b><span>Founder & Software Engineer</span><span class="relogio">Now in São Paulo · <time class="hora">--:--</time></span></figcaption>
+    <p class="bio">Engineer from the Federal University of Ceará. Started in research, measuring performance, and founded Kairon in 2025.</p>
+  </figure>
+  <div class="ct-txt">
+    <h2>Got a system that has to work when it counts?</h2>
+    <p>I read and reply personally, within two business days.</p>
+    <div class="email"><a href="mailto:henok@kairon-tech.com">henok@kairon-tech.com<span class="cursor" aria-hidden="true"></span></a>
+    <button type="button" class="copiar" id="copiar-en" data-email="henok@kairon-tech.com" data-ok="Copied">Copy e-mail</button></div>
+    <div class="redes"><a href="https://www.linkedin.com/in/henok-teixeira/" rel="noopener">LinkedIn <span class="cunha" aria-hidden="true"></span></a><a href="https://github.com/henokteixeira" rel="noopener">GitHub <span class="cunha" aria-hidden="true"></span></a></div>
+    <dl class="numeros"><div><dt><span class="conta-n" data-alvo="7">7</span>×</dt><dd>faster: air traffic server</dd></div><div><dt><span class="conta-n" data-alvo="4">4</span>th</dt><dd>of 150 teams at AWS DeepRacer</dd></div><div><dt><span class="conta-n" data-alvo="20">20</span>+</dt><dd>students taught reinforcement learning</dd></div></dl>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <div class="marca"><span class="logo"><svg role="img" aria-label="Kairon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.75 98.13"><g transform="translate(-6.72,93.93)"><path d="M9.359999656677246 0.0V-79.19999694824219H24.479999542236328V-42.959999084472656Q30.719999313354492 -45.47999954223633 36.359999656677246 -49.3799991607666Q42.0 -53.279998779296875 46.6200008392334 -58.13999938964844Q51.2400016784668 -63.0 54.540000915527344 -68.34000015258789Q57.84000015258789 -73.68000030517578 59.400001525878906 -79.19999694824219H76.68000030517578Q74.76000213623047 -72.95999908447266 71.15999984741211 -67.02000045776367Q67.55999755859375 -61.08000183105469 62.81999969482422 -55.98000144958496Q58.08000183105469 -50.880001068115234 52.80000114440918 -46.98000144958496Q47.52000045776367 -43.08000183105469 42.2400016784668 -40.68000030517578V-39.119998931884766Q47.880001068115234 -39.0 52.380001068115234 -37.68000030517578Q56.880001068115234 -36.36000061035156 60.48000144958496 -33.53999996185303Q64.08000183105469 -30.719999313354492 66.84000015258789 -26.519999504089355Q69.5999984741211 -22.31999969482422 71.76000213623047 -16.559999465942383L77.76000213623047 0.0H60.599998474121094L56.7599983215332 -13.079999923706055Q54.599998474121094 -19.559999465942383 51.599998474121094 -23.519999504089355Q48.599998474121094 -27.479999542236328 43.79999923706055 -29.399999618530273Q39.0 -31.31999969482422 31.559999465942383 -31.31999969482422H24.479999542236328V0.0ZM102.4800033569336 1.559999942779541Q97.31999969482422 1.559999942779541 93.2400016784668 -0.4200000762939453Q89.16000366210938 -2.4000000953674316 86.82000350952148 -6.359999895095825Q84.4800033569336 -10.319999694824219 84.4800033569336 -16.200000762939453Q84.4800033569336 -21.1200008392334 86.34000015258789 -24.600000381469727Q88.19999694824219 -28.079999923706055 91.91999816894531 -30.300000190734863Q95.63999938964844 -32.52000045776367 101.15999984741211 -34.02000045776367Q106.68000030517578 -35.52000045776367 114.12000274658203 -36.599998474121094Q118.19999694824219 -37.20000076293945 120.77999877929688 -37.80000114440918Q123.36000061035156 -38.400001525878906 124.56000137329102 -39.65999984741211Q125.76000213623047 -40.91999816894531 125.76000213623047 -43.439998626708984Q125.76000213623047 -47.15999984741211 123.18000030517578 -49.86000061035156Q120.5999984741211 -52.560001373291016 114.83999633789062 -52.560001373291016Q111.36000061035156 -52.560001373291016 108.18000030517578 -51.36000061035156Q105.0 -50.15999984741211 102.72000122070312 -47.579999923706055Q100.44000244140625 -45.0 99.5999984741211 -40.79999923706055L86.04000091552734 -45.0Q87.36000061035156 -49.79999923706055 89.88000106811523 -53.34000015258789Q92.4000015258789 -56.880001068115234 96.11999893188477 -59.39999961853027Q99.83999633789062 -61.91999816894531 104.63999938964844 -63.119998931884766Q109.44000244140625 -64.31999969482422 115.19999694824219 -64.31999969482422Q123.95999908447266 -64.31999969482422 129.60000228881836 -61.5Q135.24000549316406 -58.68000030517578 138.0 -52.739999771118164Q140.75999450683594 -46.79999923706055 140.75999450683594 -37.439998626708984V-25.68000030517578Q140.75999450683594 -21.600000381469727 140.93999481201172 -17.22000026702881Q141.1199951171875 -12.84000015258789 141.4199981689453 -8.460000038146973Q141.72000122070312 -4.079999923706055 142.1999969482422 0.0H128.63999938964844Q128.16000366210938 -3.359999895095825 127.80000305175781 -7.199999928474426Q127.44000244140625 -11.039999961853027 127.19999694824219 -15.0H125.27999877929688Q123.5999984741211 -10.4399995803833 120.47999954223633 -6.659999847412109Q117.36000061035156 -2.880000114440918 112.86000061035156 -0.6600000858306885Q108.36000061035156 1.559999942779541 102.4800033569336 1.559999942779541ZM305.5199890136719 0.0V-62.7599983215332H318.1199951171875L317.760009765625 -43.560001373291016H319.9200134277344Q321.6000061035156 -50.63999938964844 324.4199981689453 -55.19999885559082Q327.239990234375 -59.7599983215332 331.67999267578125 -62.03999900817871Q336.1199951171875 -64.31999969482422 342.0 -64.31999969482422Q352.67999267578125 -64.31999969482422 358.25999450683594 -56.760000228881836Q363.8399963378906 -49.20000076293945 363.8399963378906 -33.36000061035156V0.0H348.6000061035156V-31.799999237060547Q348.6000061035156 -42.0 345.5400085449219 -46.739999771118164Q342.4800109863281 -51.47999954223633 336.4800109863281 -51.47999954223633Q331.44000244140625 -51.47999954223633 327.9600067138672 -48.29999923706055Q324.4800109863281 -45.119998931884766 322.62001037597656 -39.89999961853027Q320.760009765625 -34.68000030517578 320.6400146484375 -28.440000534057617V0.0ZM262.32000732421875 1.559999942779541Q253.0800018310547 1.559999942779541 246.0 -2.2200000286102295Q238.9199981689453 -6.0 234.9000015258789 -13.380000114440918Q230.8800048828125 -20.760000228881836 230.8800048828125 -31.559999465942383Q230.8800048828125 -42.599998474121094 235.02000427246094 -49.85999870300293Q239.16000366210938 -57.119998931884766 246.24000549316406 -60.71999931335449Q253.32000732421875 -64.31999969482422 262.20001220703125 -64.31999969482422Q268.9725646972656 -64.31999969482422 274.584716796875 -62.321495056152344L268.17822265625 -51.22513961791992Q265.3948059082031 -52.31999969482422 261.8399963378906 -52.31999969482422Q257.0400085449219 -52.31999969482422 253.44000244140625 -49.97999954223633Q249.83999633789062 -47.63999938964844 247.97999572753906 -43.079999923706055Q246.1199951171875 -38.52000045776367 246.1199951171875 -31.799999237060547Q246.1199951171875 -21.239999771118164 250.6199951171875 -15.599999904632568Q255.1199951171875 -9.960000038146973 262.9200134277344 -9.960000038146973Q267.9599914550781 -9.960000038146973 271.44000244140625 -12.300000190734863Q274.9200134277344 -14.640000343322754 276.78001403808594 -19.320000171661377Q278.6400146484375 -24.0 278.6400146484375 -30.479999542236328Q278.6400146484375 -37.31999969482422 276.6600036621094 -42.18000030517578Q276.1473083496094 -43.43840026855469 275.5219421386719 -44.54804992675781L283.05352783203125 -57.59312438964844Q287.0094299316406 -54.33061218261719 289.67999267578125 -49.5Q293.760009765625 -42.119998931884766 293.760009765625 -31.200000762939453Q293.760009765625 -20.15999984741211 289.6800079345703 -12.839999914169312Q285.6000061035156 -5.519999980926514 278.4600067138672 -1.9800000190734863Q271.32000732421875 1.559999942779541 262.32000732421875 1.559999942779541ZM185.63999938964844 0.0V-62.7599983215332H198.36000061035156L198.1199951171875 -41.15999984741211H200.27999877929688Q201.36000061035156 -48.84000015258789 203.63999938964844 -53.94000053405762Q205.9199981689453 -59.040000915527344 210.0 -61.619998931884766Q214.0800018310547 -64.19999694824219 220.0800018310547 -64.19999694824219Q221.27999877929688 -64.19999694824219 222.65999603271484 -64.07999801635742Q224.0399932861328 -63.959999084472656 225.72000122070312 -63.47999954223633L225.1199951171875 -47.52000045776367Q223.1999969482422 -48.2400016784668 221.22000122070312 -48.540000915527344Q219.24000549316406 -48.84000015258789 217.55999755859375 -48.84000015258789Q212.8800048828125 -48.84000015258789 209.45999908447266 -46.44000053405762Q206.0399932861328 -44.040000915527344 203.93999481201172 -39.65999984741211Q201.83999633789062 -35.279998779296875 200.75999450683594 -29.280000686645508V0.0ZM155.27999877929688 0.0V-62.7599983215332H170.39999389648438V0.0ZM108.4800033569336 -9.600000381469727Q110.87999725341797 -9.600000381469727 113.34000015258789 -10.440000057220459Q115.80000305175781 -11.279999732971191 118.20000076293945 -12.960000038146973Q120.5999984741211 -14.640000343322754 122.63999938964844 -17.09999990463257Q124.68000030517578 -19.559999465942383 126.12000274658203 -22.920000076293945L125.93064880371094 -31.3461971282959Q124.8995361328125 -30.857452392578125 123.72000122070312 -30.479999542236328Q120.72000122070312 -29.520000457763672 117.42000198364258 -29.039999961853027Q114.12000274658203 -28.559999465942383 110.81999969482422 -27.899999618530273Q107.5199966430664 -27.239999771118164 104.87999725341797 -26.22000026702881Q102.23999786376953 -25.200000762939453 100.68000030517578 -23.34000015258789Q99.12000274658203 -21.479999542236328 99.12000274658203 -18.239999771118164Q99.12000274658203 -14.15999984741211 101.76000213623047 -11.880000114440918Q104.4000015258789 -9.600000381469727 108.4800033569336 -9.600000381469727ZM153.55079650878906 -91.29840087890625H172.24920654296875V-72.5999984741211H153.55079650878906ZM265.236328125 -29.696250915527344 259.4036560058594 -33.063751220703125 268.145263671875 -44.16365432739258 270.47833251953125 -42.816654205322266Z" fill="currentColor"/></g></svg></span><span>Engineering with people on the other side.</span></div>
+  <div>Kairon Tech · CNPJ 60.620.216/0001-81 · São Paulo, Brazil</div>
+</div></footer>
+
+<script>
+(function () {
+  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var top = document.querySelector('.top');
+
+  // título entra palavra por palavra
+  if (!calmo) document.querySelectorAll('.entra').forEach(function (h) {
+    var ws = h.textContent.trim().split(/\s+/);
+    h.setAttribute('aria-label', h.textContent.trim());
+    h.innerHTML = ws.map(function (w, i) { return '<span class="w" aria-hidden="true" style="--i:' + i + '">' + w + '</span>'; }).join(' ');
+  });
+
+  // a frase que se reescreve, com o bloco esperando no fim
+  document.querySelectorAll('.frase').forEach(function (el) {
+    var fr = el.getAttribute('data-frases').split('|'), i = 0;
+    function prox() {
+      i = (i + 1) % fr.length;
+      if (calmo) { el.textContent = fr[i]; return setTimeout(prox, 3600); }
+      var t = el.textContent;
+      (function apaga() {
+        if (t.length) { t = t.slice(0, -1); el.textContent = t; return setTimeout(apaga, 26); }
+        var alvo = fr[i], n = 0;
+        (function escreve() {
+          n++; el.textContent = alvo.slice(0, n);
+          if (n < alvo.length) return setTimeout(escreve, 42 + Math.random() * 40);
+          setTimeout(prox, 2600);
+        })();
+      })();
+    }
+    setTimeout(prox, 3000);
+  });
+
+  // rolagem: sombra do topo, ponteiro que gira, foto que desliza
+  var most = document.querySelectorAll('.dobra .mostrador'), fotos = document.querySelectorAll('.moldura img');
+  var pedido = false;
+  function rola() {
+    pedido = false;
+    var y = window.scrollY;
+    if (top) top.classList.toggle('sombra', y > 8);
+    document.querySelectorAll('.top').forEach(function (t) { t.classList.toggle('sombra', y > 8); });
+    if (calmo) return;
+    fotos.forEach(function (f) {
+      var r = f.parentNode.getBoundingClientRect(), h = window.innerHeight;
+      if (r.bottom < 0 || r.top > h) return;
+      var p = (h - r.top) / (h + r.height);
+      f.style.setProperty('--py', (-12 + p * 12).toFixed(2) + '%');
+    });
+  }
+  window.addEventListener('scroll', function () { if (!pedido) { pedido = true; requestAnimationFrame(rola); } }, { passive: true });
+  rola();
+
+  // o que está abaixo da dobra aparece ao chegar na tela
+  if (!calmo && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('revela'); e.target.classList.remove('espera'); io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.cap h2, .tile, .card, .cap.areia p, .numeros > div, .contato h2, .contato p, .email, .redes, .foto').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.height === 0 || r.top < window.innerHeight) return;
+      var irmaos = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty('--d', Math.min(irmaos, 6));
+      el.classList.add('espera'); io.observe(el);
+    });
+
+    // números contam até o valor real
+    var io2 = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io2.unobserve(e.target);
+        var el = e.target, alvo = +el.getAttribute('data-alvo'), t0 = performance.now();
+        (function passo(t) {
+          var k = Math.min(1, (t - t0) / 1300), v = 1 - Math.pow(1 - k, 3);
+          el.textContent = Math.round(alvo * v);
+          if (k < 1) requestAnimationFrame(passo);
+        })(t0);
+      });
+    }, { threshold: .6 });
+    document.querySelectorAll('.conta-n').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.height === 0 || r.top < window.innerHeight) return;
+      el.textContent = '0'; io2.observe(el);
+    });
+  }
+
+  // o ponteiro do mostrador aponta para o cursor; parado, volta a uma hora
+  document.querySelectorAll('.dobra .mostrador').forEach(function (m) {
+    var pt = m.querySelector('.ponteiro'), aro = m.querySelector('.aro');
+    if (!pt || !aro || calmo) return;
+    var atual = 0, alvo = 0, rodando = false, ocioso;
+    function desenha() {
+      var dif = ((alvo - atual + 540) % 360) - 180;
+      atual += dif * 0.09;
+      pt.setAttribute('transform', 'rotate(' + atual.toFixed(2) + ' 262.32 -31.38)');
+      if (Math.abs(dif) > 0.05) requestAnimationFrame(desenha); else rodando = false;
+    }
+    function mira(a) { alvo = a; if (!rodando) { rodando = true; requestAnimationFrame(desenha); } }
+    window.addEventListener('pointermove', function (e) {
+      var r = aro.getBoundingClientRect();
+      if (r.bottom < 0) return;
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var ang = Math.atan2(e.clientX - cx, cy - e.clientY) * 180 / Math.PI;
+      mira(ang - 30);
+      clearTimeout(ocioso);
+      ocioso = setTimeout(function () { mira(0); }, 2200);
+    }, { passive: true });
+    document.addEventListener('pointerleave', function () { mira(0); });
+  });
+
+  // botão com leve atração
+  if (!calmo) document.querySelectorAll('.ima').forEach(function (b) {
+    b.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      var r = b.getBoundingClientRect();
+      b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .18).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * .3).toFixed(1) + 'px)';
+    });
+    b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+  });
+
+  // hora de São Paulo no contato
+  var fmt;
+  try { fmt = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' }); } catch (e) {}
+  function hora() { if (fmt) document.querySelectorAll('.hora').forEach(function (h) { h.textContent = fmt.format(new Date()); }); }
+  hora(); setInterval(hora, 15000);
+
+  // copiar e-mail
+  document.querySelectorAll('.copiar').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-email'), ok = b.getAttribute('data-ok'), orig = b.textContent;
+      function feito() { b.textContent = ok; setTimeout(function () { b.textContent = orig; }, 1800); }
+      try { navigator.clipboard.writeText(t).then(feito, function () { sel(b); }); } catch (e) { sel(b); }
+    });
+  });
+  function sel(b) {
+    var a = b.parentNode.querySelector('a'); if (!a) return;
+    var r = document.createRange(); r.selectNodeContents(a);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+})();
+</script>
+</body>
+</html>
