@@ -59,13 +59,13 @@ svg { display: block; max-width: 100% }
 .top nav a { color: var(--fg); text-decoration: none; }
 .top nav a:hover { color: var(--accent); }
 .top nav .lang { font-weight: 700; font-size: 13px; letter-spacing: .08em; border: 1px solid var(--line); padding: 3px 9px; border-radius: 3px; }
-@media (max-width: 560px) { .top nav .sec { display: none } }
+@media (max-width: 560px) { .top nav { gap: 18px; } .top .logo { width: 92px; } }
 
 /* primeira dobra */
 .dobra { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); padding-block: clamp(56px, 11vw, 132px) clamp(40px, 6vw, 64px); }
 /* o relógio fica inteiro, na coluna da direita, centrado na altura do título */
 .dobra .mostrador { position: absolute; right: max(16px, calc((100vw - 1120px) / 2 - 12px)); top: 50%; transform: translateY(-56%); width: clamp(300px, 46vw, 620px); color: var(--accent); pointer-events: none; }
-@media (max-width: 820px) { .dobra .mostrador { width: 220px; right: -40px; top: 24px; transform: none; } .dobra .mostrador .ponteiro { opacity: .2; } }
+@media (max-width: 900px) { .dobra .mostrador { width: 190px; right: 24px; top: 40px; transform: none; } .dobra .mostrador .ponteiro { opacity: .4; } }
 .dobra .mostrador .aro { opacity: .09; }
 .dobra .mostrador .ponteiro { opacity: .55; }
 .dobra .mostrador svg { width: 100%; height: auto; animation: assenta 1.6s cubic-bezier(.2,.7,.1,1) both; transform-origin: 50% 50%; }
@@ -228,6 +228,32 @@ ul.k li:hover::before { transform: translate(3px, -3px); }
 .ct { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); align-items: center; }
 .foto .bio { margin-top: 10px; font-size: 14px; color: var(--muted); max-width: 34ch; }
 .ct-txt .numeros { margin-top: 44px; }
+
+/* celular e tablet */
+@media (max-width: 640px) {
+  .dobra { padding-top: 40px; }
+  .dobra .mostrador { position: relative; right: auto; top: auto; transform: none; width: 76px; margin-bottom: 28px; }
+  .dobra .mostrador .aro { opacity: .16; } .dobra .mostrador .ponteiro { opacity: .7; }
+  .dobra h1 { font-size: clamp(38px, 11vw, 52px); }
+  .btn { width: 100%; justify-content: center; box-sizing: border-box; }
+  .verbete { margin-top: 40px; }
+  .cap { padding-block: 56px; }
+  .tiles { gap: 36px; }
+  .card { padding: 10px 10px 18px; }
+  .card .nome { font-size: 22px; }
+  .ct { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .foto { max-width: 300px; }
+  .contato h2 { font-size: clamp(32px, 9vw, 44px); }
+  .email a { font-size: clamp(20px, 6.4vw, 28px); }
+  .numeros { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .numeros > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 16px; }
+  .numeros dt { font-size: 44px; } .numeros dd { margin: 0; }
+  footer .wrap { flex-direction: column; align-items: flex-start; }
+}
+@media (min-width: 641px) and (max-width: 900px) {
+  .ct { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; }
+  .numeros { gap: 20px; }
+}
 @keyframes rg0 { 0%, 25% { opacity: 0; transform: none } 26%, 62% { opacity: 1; transform: none } 74% { opacity: 1; transform: translate(118px, -6px) } 79%, 100% { opacity: 0; transform: translate(118px, -6px) } }
 .rg0 { animation: rg0 7s infinite; }
 @keyframes rg1 { 0%, 33% { opacity: 0; transform: none } 34%, 65% { opacity: 1; transform: none } 77% { opacity: 1; transform: translate(118px, -6px) } 82%, 100% { opacity: 0; transform: translate(118px, -6px) } }
@@ -282,10 +308,10 @@ ul.k li:hover::before { transform: translate(3px, -3px); }
 @keyframes b2 { 0%, 35% { transform: scaleX(0) } 48%, 94% { transform: scaleX(1); opacity: 1 } 100% { opacity: 0 } }
 .lota { transform-origin: left center; transform: scaleX(.8); animation: lota 8s infinite; }
 @keyframes lota { 0%, 10% { transform: scaleX(0) } 52%, 90% { transform: scaleX(.8) } 96%, 100% { transform: scaleX(0) } }
-.cabeca { opacity: 0; animation: cabeca 8s infinite; }
-@keyframes cabeca { 0% { opacity: 1; transform: translateX(0) } 40% { opacity: 1; transform: translateX(272px) } 42%, 100% { opacity: 0; transform: translateX(272px) } }
-.marca { animation: marca 8s infinite; }
-@keyframes marca { 0%, 38% { opacity: 0 } 46%, 92% { opacity: 1 } 98%, 100% { opacity: 0 } }
+.leitor { opacity: 0; animation: leitor 8s infinite; }
+@keyframes leitor { 0% { opacity: 1; transform: translateX(0) } 40% { opacity: 1; transform: translateX(272px) } 42%, 100% { opacity: 0; transform: translateX(272px) } }
+.colch { animation: colch 8s infinite; }
+@keyframes colch { 0%, 38% { opacity: 0 } 46%, 92% { opacity: 1 } 98%, 100% { opacity: 0 } }
 .preg { animation: preg 8s infinite; }
 @keyframes preg { 0%, 38% { fill: var(--acc-soft) } 46%, 92% { fill: var(--accent); opacity: .35 } 100% { fill: var(--acc-soft) } }
 .clip { animation: clip 8s infinite; }
@@ -299,7 +325,7 @@ ul.k li:hover::before { transform: translate(3px, -3px); }
   .espera { opacity: 1; transform: none; }
   .viz *, .trilho { animation: none !important; }
   .faixa .dois { display: none; }
-  .trilho { width: auto; } .trilho .um { flex-wrap: wrap; row-gap: 8px; padding-inline: clamp(16px, 4vw, 48px); }
+  .trilho { width: auto; } .trilho .um { flex-wrap: wrap; row-gap: 8px; padding-inline: clamp(16px, 4vw, 48px); } .trilho span { white-space: normal; }
 }
 </style>
 </head>
@@ -350,8 +376,8 @@ ul.k li:hover::before { transform: translate(3px, -3px); }
 <rect class="fr" x="24" y="42" width="80" height="30" rx="2"/>
 <rect class="fs preg" x="108" y="42" width="140" height="30" rx="2"/>
 <rect class="fr" x="252" y="42" width="44" height="30" rx="2"/>
-<g class="marca"><path class="ln lna" d="M110 34 h-6 v46 h6"/><path class="ln lna" d="M246 34 h6 v46 h-6"/></g>
-<rect class="fa cabeca" x="23" y="32" width="2" height="50"/>
+<g class="colch"><path class="ln lna" d="M110 34 h-6 v46 h6"/><path class="ln lna" d="M246 34 h6 v46 h-6"/></g>
+<rect class="fa leitor" x="23" y="32" width="2" height="50"/>
 <g class="clip"><rect class="fa" x="108" y="112" width="140" height="30" rx="2"/><path class="fb" d="M172 119 l13 8 l-13 8 z"/></g>
 </svg></div><div class="info"><div class="linha"><span class="nome">Quick Sermon</span><span class="estado dev">Em desenvolvimento</span></div><p>Transforma a live do culto em clip da pregação, pronto para o YouTube.</p><div class="links"><a href="https://henokteixeira.github.io/quick-sermon/" rel="noopener">Ver o projeto</a></div></div></article>
     <article class="card largo"><div class="viz"><svg viewBox="0 0 320 130" aria-hidden="true">
@@ -371,7 +397,7 @@ ul.k li:hover::before { transform: translate(3px, -3px); }
 
 <section class="contato" id="contato"><div class="wrap ct">
   <figure class="foto">
-    <div class="moldura"><img src="../assets/henok.jpg" alt="Henok Teixeira, de camiseta marrom, em frente ao mar no fim da tarde" width="800" height="1000" loading="lazy" decoding="async"></div>
+    <div class="moldura"><img src="../assets/henok.jpg" alt="Henok Teixeira, de camiseta marrom, em frente ao mar no fim da tarde" width="800" height="1000" decoding="async"></div>
     <figcaption><b>Henok Teixeira</b><span>Fundador e engenheiro de software</span><span class="relogio">Agora em São Paulo · <time class="hora">--:--</time></span></figcaption>
     <p class="bio">Engenheiro formado pela UFC. Comecei na pesquisa, medindo desempenho, e criei a Kairon em 2025.</p>
   </figure>
